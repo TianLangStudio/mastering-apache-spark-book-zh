@@ -1,5 +1,9 @@
 include::book-intro.adoc[]
 
+
+Reading nodes for Mastering Apache Spark 2.0, what is a gitbook of https://pl.linkedin.com/in/jaceklaskowski and you can find it on https://www.gitbook.com/@jaceklaskowski 
+这是 Mastering Apache Spark 2.0 这本gitbook的读书笔记, 原书地址： https://www.gitbook.com/@jaceklaskowski
+
 == GitHub Flavored writing flow
 
 === AsciiDoc
