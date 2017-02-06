@@ -21,15 +21,12 @@ Spark关注处理速度, 易用性, 可扩展性 及 交互式分析.
 
 Spark也经常被称为 *计算集群引擎* ， *执行引擎*.
 
-Spark is a *distributed platform for executing complex multi-stage applications*, like *machine learning algorithms*, and *interactive ad hoc queries*. Spark provides an efficient abstraction for in-memory cluster computing called link:spark-rdd.adoc[Resilient Distributed Dataset].
+Spark是一个很适合运行 类似 *机器学习算法*，*即席查询* 的复杂多阶段运算任务的分布式计算平台，Spark使用RDDlink:spark-rdd.adoc[弹性分别式数据集 Resilient Distributed Dataset]描述这样的任务 
+使用Spark可以简化机器学习，预测性分析类应用的开发。
 
-Using Spark Application Frameworks, Spark simplifies access to machine learning and predictive analytics at scale.
+虽然Spark本身主要由http://scala-lang.org/[Scala]编写, 但是也支持Java, Python, and R 调用
 
-Spark is mainly written in http://scala-lang.org/[Scala], but provides developer API for languages like Java, Python, and R.
-
-NOTE: Microsoft's https://github.com/Microsoft/Mobius[Mobius project] provides C# API for Spark _"enabling the implementation of Spark driver program and data processing operations in the languages supported in the .NET framework like C# or F#."_
-
-If you have large amounts of data that requires low latency processing that a typical MapReduce program cannot provide, Spark is a viable alternative.
+NOTE: 微软的 https://github.com/Microsoft/Mobius[Mobius 项目] 为Spark了提供, Spark is a viable alternative.
 
 * Access any data type across any data source.
 * Huge demand for storage and data processing.
