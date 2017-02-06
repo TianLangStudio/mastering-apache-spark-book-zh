@@ -46,7 +46,7 @@ Spark可以访问多种数据源link:spark-data-sources.adoc[data sources].
 
 Apache Spark的 Streaming 和 SQL 编程模型能够帮助开发人员和数据科学家更容易的创建机器学习和图分析应用 
 
-At a high level, any Spark application creates *RDDs* out of some input, run link:spark-rdd.adoc[(lazy) transformations] of these RDDs to some other form (shape), and finally perform link:spark-rdd.adoc[actions] to collect or store data. Not much, huh?
+简单的说，所有的Spark应用都是１．先装载数据创建 *RDDs*  2. 然后对ＲＤＤ执行各种link:spark-rdd.adoc[转换操作]变换ＲＤＤ形式　３．最后对ＲＤＤ执行link:spark-rdd.adoc[求值操作]获取运算结果。是不是很简单？！
 
 You can look at Spark from programmer's, data engineer's and administrator's point of view. And to be honest, all three types of people will spend quite a lot of their time with Spark to finally reach the point where they exploit all the available features. Programmers use language-specific APIs (and work at the level of RDDs using transformations and actions), data engineers use higher-level abstractions like DataFrames or Pipelines APIs or external tools (that connect to Spark), and finally it all can only be possible to run because administrators set up Spark clusters to deploy Spark applications to.
 
