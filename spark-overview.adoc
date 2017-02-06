@@ -15,13 +15,11 @@ http://spark.apache.org/[Apache Spark]  是一个优先使用内存的通用开�
 .Spark平台
 image::diagrams/spark-platform.png[align="center"]
 
-You could also describe Spark as a distributed, data processing engine for *batch and streaming modes* featuring SQL queries, graph processing, and machine learning.
+与基于磁盘俩阶段运算的Hadoop MapReduce计算引擎相比，Spark基于内存多阶段运算的数据处理方式通常能提供更高效的性能,如做迭代运算，数据挖掘(read https://databricks.com/blog/2014/11/05/spark-officially-sets-a-new-record-in-large-scale-sorting.html[Spark officially sets a new record in large-scale sorting]).
 
-In contrast to Hadoop’s two-stage disk-based MapReduce computation engine, Spark's multi-stage (mostly) in-memory computing engine allows for running most computations in memory, and hence most of the time provides better performance for certain applications, e.g. iterative algorithms or interactive data mining (read https://databricks.com/blog/2014/11/05/spark-officially-sets-a-new-record-in-large-scale-sorting.html[Spark officially sets a new record in large-scale sorting]).
+Spark关注处理速度, 易用性, 可扩展性 及 交互式分析.
 
-Spark aims at speed, ease of use, extensibiity and interactive analytics.
-
-Spark is often called *cluster computing engine* or simply *execution engine*.
+Spark也经常被称为 *计算集群引擎* ， *执行引擎*.
 
 Spark is a *distributed platform for executing complex multi-stage applications*, like *machine learning algorithms*, and *interactive ad hoc queries*. Spark provides an efficient abstraction for in-memory cluster computing called link:spark-rdd.adoc[Resilient Distributed Dataset].
 
