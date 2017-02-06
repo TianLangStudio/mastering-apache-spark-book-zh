@@ -2,17 +2,17 @@
 
 欢迎来到Apache Spark 学习手册 (笔记)!
 
-.作者介绍
+=== 作者介绍
 ****
-* 姓名：* https://pl.linkedin.com/in/jaceklaskowski[Jacek Laskowski]
-* 职业：* 独立顾问 热衷于软件开发并积极教别人怎么使用  *Apache Spark*, Scala, sbt, and Apache Kafka (还包含点 Hadoop YARN, Apache Mesos, 和 Docker). 
-* 领导项目： * 
-  -- http://www.meetup.com/WarsawScala/[Warsaw Scala Enthusiasts] 
-  -- http://www.meetup.com/Warsaw-Spark[Warsaw Spark] 
+* *姓名:* https://pl.linkedin.com/in/jaceklaskowski[Jacek Laskowski]
+* *职业:* 独立顾问 热衷于软件开发并积极教别人怎么使用  *Apache Spark*, Scala, sbt, and Apache Kafka (还包含点 Hadoop YARN, Apache Mesos, 和 Docker). 
+* *领导项目:* 
+  - http://www.meetup.com/WarsawScala/[Warsaw Scala Enthusiasts] 
+  - http://www.meetup.com/Warsaw-Spark[Warsaw Spark] 
 
-* 联系方式：* 
-    -- Email jacek@japila.pl 
-    -- Twitter https://twitter.com/jaceklaskowski[@jaceklaskowski] 
+* *联系方式:* 
+    - Email jacek@japila.pl 
+    - Twitter https://twitter.com/jaceklaskowski[@jaceklaskowski] 
 ****    
 
 如果你喜欢这本笔记也应该会喜欢 https://github.com/jaceklaskowski/spark-workshop#spark-workshops-for-developers-administrators-and-operators[Spark Workshops for Developers, Administrators and Operators].
@@ -21,3 +21,9 @@
 
 欢迎关注我的twitter https://twitter.com/jaceklaskowski[@jaceklaskowski] 已获知本笔记及Spark的更新信息.
 
+=== 译者寄语
+=======================
+* 我刚刚学习使用gitbook  也是spark和英语的初学者，如有纰漏请您不吝指正
+
+* *如有侵权也请与我联系以便删除侵权内容*
+=======================
