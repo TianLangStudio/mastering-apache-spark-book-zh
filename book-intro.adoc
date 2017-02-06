@@ -3,6 +3,7 @@
 欢迎来到Apache Spark 学习手册 (笔记)!
 
 .作者介绍
+****
 * 姓名：* https://pl.linkedin.com/in/jaceklaskowski[Jacek Laskowski]
 * 职业：* 独立顾问 热衷于软件开发并积极教别人怎么使用  *Apache Spark*, Scala, sbt, and Apache Kafka (还包含点 Hadoop YARN, Apache Mesos, 和 Docker). 
 * 领导项目： * 
@@ -12,7 +13,7 @@
 * 联系方式：* 
     -- Email jacek@japila.pl 
     -- Twitter https://twitter.com/jaceklaskowski[@jaceklaskowski] 
-    
+****    
 
 如果你喜欢这本笔记也应该会喜欢 https://github.com/jaceklaskowski/spark-workshop#spark-workshops-for-developers-administrators-and-operators[Spark Workshops for Developers, Administrators and Operators].
 
