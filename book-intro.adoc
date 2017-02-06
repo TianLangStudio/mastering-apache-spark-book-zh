@@ -1,15 +1,22 @@
 == Mastering Apache Spark 2.0
 
-Welcome to Mastering Apache Spark 2.0 (aka #SparkNotes)!
+欢迎来到Apache Spark 学习手册 (笔记)!
 
-I'm https://pl.linkedin.com/in/jaceklaskowski[Jacek Laskowski], an *independent consultant* who is passionate about software development and teaching people in effective use of *Apache Spark*, Scala, sbt, and Apache Kafka (with a bit of Hadoop YARN, Apache Mesos, and Docker). I lead http://www.meetup.com/WarsawScala/[Warsaw Scala Enthusiasts] and http://www.meetup.com/Warsaw-Spark[Warsaw Spark] meetups in Warsaw, Poland.
+.作者介绍
+* 姓名：* https://pl.linkedin.com/in/jaceklaskowski[Jacek Laskowski]
+* 职业：* 独立顾问 热衷于软件开发并积极教别人怎么使用  *Apache Spark*, Scala, sbt, and Apache Kafka (还包含点 Hadoop YARN, Apache Mesos, 和 Docker). 
+* 领导项目： * 
+  -- http://www.meetup.com/WarsawScala/[Warsaw Scala Enthusiasts] 
+  -- http://www.meetup.com/Warsaw-Spark[Warsaw Spark] 
 
-Contact me at jacek@japila.pl or https://twitter.com/jaceklaskowski[@jaceklaskowski] to discuss Apache Spark opportunities, e.g. courses, workshops, mentoring or application development services.
+* 联系方式：* 
+    -- Email jacek@japila.pl 
+    -- Twitter https://twitter.com/jaceklaskowski[@jaceklaskowski] 
+    
 
-If you like the Apache Spark notes you should seriously consider participating in my own, very hands-on https://github.com/jaceklaskowski/spark-workshop#spark-workshops-for-developers-administrators-and-operators[Spark Workshops for Developers, Administrators and Operators].
+如果你喜欢这本笔记也应该会喜欢 https://github.com/jaceklaskowski/spark-workshop#spark-workshops-for-developers-administrators-and-operators[Spark Workshops for Developers, Administrators and Operators].
 
-This collections of notes (what some may rashly call a "book") serves as the ultimate place of mine to collect all the nuts and bolts of using https://spark.apache.org[Apache Spark]. The notes aim to help me designing and developing better products with Apache Spark. It is also a viable proof of my understanding of Apache Spark. I do eventually want to reach the highest level of mastery in Apache Spark.
+我在这里记录使用 https://spark.apache.org[Apache Spark] 的点点滴滴以帮助我更好的设计和开发Apache Spark相关的应用并更好的掌握Spark.  
 
-It _may_ become a book one day, but surely serves as *the study material* for trainings, workshops, videos and courses about Apache Spark. Follow me on twitter https://twitter.com/jaceklaskowski[@jaceklaskowski] to know it early. You will also learn about the upcoming events about Apache Spark.
+欢迎关注我的twitter https://twitter.com/jaceklaskowski[@jaceklaskowski] 已获知本笔记及Spark的更新信息.
 
-Expect text and code snippets from http://spark.apache.org/community.html[Spark's mailing lists], http://spark.apache.org/docs/latest/[the official documentation of Apache Spark], http://stackoverflow.com/tags/apache-spark/info[StackOverflow], blog posts, http://search.oreilly.com/?q=learning+spark[books from O'Reilly], press releases, YouTube/Vimeo videos, http://www.quora.com/Apache-Spark[Quora], https://github.com/apache/spark[the source code of Apache Spark], etc. Attribution follows.
