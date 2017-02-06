@@ -26,16 +26,23 @@ Spark是一个很适合运行 类似 *机器学习算法*，*即席查询* 的�
 
 虽然Spark本身主要由http://scala-lang.org/[Scala]编写, 但是也支持Java, Python, and R 调用
 
-NOTE: 微软的 https://github.com/Microsoft/Mobius[Mobius 项目] 为Spark了提供, Spark is a viable alternative.
+NOTE: 微软的 https://github.com/Microsoft/Mobius[Mobius 项目] 为Spark了提供C#调用支持。
+如果典型的MapReduce计算引擎已经不能满足您对数据量和处理时间的要求，你可以考虑试试Spark
 
-* Access any data type across any data source.
-* Huge demand for storage and data processing.
+* 没有数据类型限制，不依赖特定的数据源.
+* 可以处理巨量的数据.
 
-The Apache Spark project is an umbrella for http://spark.apache.org/sql/[SQL] (with Datasets), http://spark.apache.org/streaming/[streaming], http://spark.apache.org/mllib/[machine learning] (pipelines) and http://spark.apache.org/graphx/[graph] processing engines built atop Spark Core. You can run them all in a single application using a consistent API.
+Apache Spark项目包含以下子项目： 
 
-Spark runs locally as well as in clusters, on-premises or in cloud. It runs on top of Hadoop YARN, Apache Mesos, standalone or in the cloud (Amazon EC2 or IBM Bluemix).
+* http://spark.apache.org/sql/[SQL] (使用Datasets)
+* http://spark.apache.org/streaming/[streaming]
+* http://spark.apache.org/mllib/[machine learning] (pipelines)
+* http://spark.apache.org/graphx/[graph] 
+他们都构建在Spark Core之上并提供统一的访问方式，你可以把他们当成一个应用
 
-Spark can access data from many link:spark-data-sources.adoc[data sources].
+Spark可以运行在你的个人电脑上也可以运行在集群上，可以运行在 Hadoop YARN, Apache Mesos也可以运行在共有云上(Amazon EC2 or IBM Bluemix).
+
+Spark可以访问多种数据源link:spark-data-sources.adoc[data sources].
 
 Apache Spark's Streaming and SQL programming models with MLlib and GraphX make it easier for developers and data scientists to build applications that exploit machine learning and graph analytics.
 
