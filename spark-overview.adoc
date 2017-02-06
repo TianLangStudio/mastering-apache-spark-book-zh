@@ -19,7 +19,7 @@ image::diagrams/spark-platform.png[align="center"]
 
 Spark关注处理速度, 易用性, 可扩展性 及 交互式分析.
 
-Spark也经常被称为 *计算集群引擎* ， *执行引擎*.
+Spark也经常被称为 *集群式计算引擎* ， *执行引擎*.
 
 Spark是一个很适合运行 类似 *机器学习算法*，*即席查询* 的复杂多阶段运算任务的分布式计算平台，Spark使用RDDlink:spark-rdd.adoc[弹性分别式数据集 Resilient Distributed Dataset]描述这样的任务 
 使用Spark可以简化机器学习，预测性分析类应用的开发。
@@ -44,7 +44,7 @@ Spark可以运行在你的个人电脑上也可以运行在集群上，可以运
 
 Spark可以访问多种数据源link:spark-data-sources.adoc[data sources].
 
-Apache Spark's Streaming and SQL programming models with MLlib and GraphX make it easier for developers and data scientists to build applications that exploit machine learning and graph analytics.
+Apache Spark的 Streaming 和 SQL 编程模型能够帮助开发人员和数据科学家更容易的创建机器学习和图分析应用 
 
 At a high level, any Spark application creates *RDDs* out of some input, run link:spark-rdd.adoc[(lazy) transformations] of these RDDs to some other form (shape), and finally perform link:spark-rdd.adoc[actions] to collect or store data. Not much, huh?
 
