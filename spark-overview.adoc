@@ -48,67 +48,50 @@ Apache Spark的 Streaming 和 SQL 编程模型能够帮助开发人员和数据�
 
 简单的说，所有的Spark应用都是１．先装载数据创建 *RDDs*  2. 然后对ＲＤＤ执行各种link:spark-rdd.adoc[转换操作]变换ＲＤＤ形式　３．最后对ＲＤＤ执行link:spark-rdd.adoc[求值操作]获取运算结果。是不是很简单？！
 
-You can look at Spark from programmer's, data engineer's and administrator's point of view. And to be honest, all three types of people will spend quite a lot of their time with Spark to finally reach the point where they exploit all the available features. Programmers use language-specific APIs (and work at the level of RDDs using transformations and actions), data engineers use higher-level abstractions like DataFrames or Pipelines APIs or external tools (that connect to Spark), and finally it all can only be possible to run because administrators set up Spark clusters to deploy Spark applications to.
 
-It is Spark's goal to be a general-purpose computing platform with various specialized applications frameworks on top of a single unified engine.
+=== [[why-spark]] 为什么要使用Spark
 
-NOTE: When you hear "Apache Spark" it can be two things -- the Spark engine aka *Spark Core* or the Apache Spark open source project which is an "umbrella" term for Spark Core and the accompanying Spark Application Frameworks, i.e. link:spark-sql.adoc[Spark SQL], link:spark-streaming/spark-streaming.adoc[Spark Streaming], link:spark-mllib/spark-mllib.adoc[Spark MLlib] and link:spark-graphx.adoc[Spark GraphX] that sit on top of Spark Core and the main data abstraction in Spark called link:spark-rdd.adoc[RDD - Resilient Distributed Dataset].
 
-=== [[why-spark]] Why Spark
+====易于使用,上手简单
 
-Let's list a few of the many reasons for Spark. We are doing it first, and then comes the overview that lends a more technical helping hand.
+Spark提供了link:spark-shell.adoc[spark-shell] 你可以在你的笔记本上用spark-shell快速的编写运行一个spark应用 
+然后你还可以通过link:spark-standalone.adoc[Spark Standalone] 提供的集群管理方式发布你的应用
 
-==== Easy to Get Started
+==== 适用场景广
 
-Spark offers link:spark-shell.adoc[spark-shell] that makes for a very easy head start to writing and running Spark applications on the command line on your laptop.
+就像Apache Spark的作者Matei Zaharia说的那样 https://youtu.be/49Hr5xZyTEA[Introduction to AmpLab Spark Internals video]:
 
-You could then use link:spark-standalone.adoc[Spark Standalone] built-in cluster manager to deploy your Spark applications to a production-grade cluster to run on a full dataset.
-
-==== Unified Engine for Diverse Workloads
-
-As said by Matei Zaharia - the author of Apache Spark - in https://youtu.be/49Hr5xZyTEA[Introduction to AmpLab Spark Internals video] (quoting with few changes):
-
-> One of the Spark project goals was to deliver a platform that supports a very wide array of *diverse workflows* - not only MapReduce *batch* jobs (there were available in Hadoop already at that time), but also *iterative computations* like graph algorithms or Machine Learning.
+> 不单支持类似MapReduce的批处理计算还支持像图计算，集群学习等迭代计算.
 >
-> And also different scales of workloads from sub-second interactive jobs to jobs that run for many hours.
+> 不单支持（运行时间）短任务还支持运行时间长的任务
 
-Spark combines batch, interactive, and streaming workloads under one rich concise API.
+Spark支持批处理,交互式操作,和流计算并提供一套统一的API.
 
-Spark supports *near real-time streaming workloads* via link:spark-streaming/spark-streaming.adoc[Spark Streaming] application framework.
+通过link:spark-streaming/spark-streaming.adoc[Spark Streaming]支持近实时数据处理.
+通过Spark Shell支持交互式操作
 
-ETL workloads and Analytics workloads are different, however Spark attempts to offer a unified platform for a wide variety of workloads.
 
-Graph and Machine Learning algorithms are iterative by nature and less saves to disk or transfers over network means better performance.
+不错的Spark介绍视频： https://youtu.be/SxAxAhn-BDU[Apache Spark是什么?] 
+==== 从分布式批处理中获益
 
-There is also support for interactive workloads using Spark shell.
+当提到 *分布式比处理* 时, 你可能会想到link:varia/spark-hadoop.adoc[Hadoop].
 
-You should watch the video https://youtu.be/SxAxAhn-BDU[What is Apache Spark?] by Mike Olson, Chief Strategy Officer and Co-Founder at Cloudera, who provides a very exceptional overview of Apache Spark, its rise in popularity in the open source community, and how Spark is primed to replace MapReduce as the general processing engine in Hadoop.
+Spark借鉴了Hadoop MapReduce的设计思想 并能和Hadoop一起使用 在Yarn，HDFS上使用能够提高分布式计算性能并能简化操作.
 
-==== Leverages the Best in distributed batch data processing
+一句话： Spark就是Hadoop++.
 
-When you think about *distributed batch data processing*, link:varia/spark-hadoop.adoc[Hadoop] naturally comes to mind as a viable solution.
 
-Spark draws many ideas out of Hadoop MapReduce. They work together well - Spark on YARN and HDFS - while improving on the performance and simplicity of the distributed computing engine.
+==== RDD - 分布式并行的Scala集合
 
-For many, Spark is Hadoop++, i.e. MapReduce done in a better way.
+如果你是一个Scala开发者，你会发现Spark的API与 http://www.scala-lang.org/docu/files/collections-api/collections.html[Scala的集合API]非常相似
 
-And it should *not* come as a surprise, without Hadoop MapReduce (its advances and deficiencies), Spark would not have been born at all.
-
-==== RDD - Distributed Parallel Scala Collections
-
-As a Scala developer, you may find Spark's RDD API very similar (if not identical) to http://www.scala-lang.org/docu/files/collections-api/collections.html[Scala's Collections API].
-
-It is also exposed in Java, Python and R (as well as SQL, i.e. SparkSQL, in a sense).
-
-So, when you have a need for distributed Collections API in Scala, Spark with RDD API should be a serious contender.
-
-==== [[rich-standard-library]] Rich Standard Library
+==== [[rich-standard-library]] 丰富的标准库
 
 Not only can you use `map` and `reduce` (as in Hadoop MapReduce jobs) in Spark, but also a vast array of other higher-level operators to ease your Spark queries and application development.
 
 It expanded on the available computation styles beyond the only map-and-reduce available in Hadoop MapReduce.
 
-==== Unified development and deployment environment for all
+==== 统一的开发和部署环境
 
 Regardless of the Spark tools you use - the Spark API for the many programming languages supported - Scala, Java, Python, R, or link:spark-shell.adoc[the Spark shell], or the many Spark Application Frameworks leveraging the concept of link:spark-rdd.adoc[RDD], i.e. link:spark-sql.adoc[Spark SQL], link:spark-streaming/spark-streaming.adoc[Spark Streaming], link:spark-mllib/spark-mllib.adoc[Spark MLlib] and link:spark-graphx.adoc[Spark GraphX], you still use the same development and deployment environment to for large data sets to yield a result, be it a prediction (link:spark-mllib/spark-mllib.adoc[Spark MLlib]), a structured data queries (link:spark-sql.adoc[Spark SQL]) or just a large distributed batch (Spark Core) or streaming (Spark Streaming) computation.
 
