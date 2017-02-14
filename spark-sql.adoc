@@ -1,8 +1,8 @@
-== Spark SQL -- Structured Queries on Large Scale
+== Spark SQL -- 查询大规模结构化数据
 
-Like Apache Spark in general, *Spark SQL* in particular is all about distributed in-memory computations. The primary difference between them -- Spark SQL and the "bare" Spark Core's RDD computation model -- is in offering a framework for loading, querying and persisting structured and semi-structured data using structured queries that can equally be expressed using SQL (with subqueries), Hive QL and the custom high-level SQL-like, declarative, type-safe link:spark-sql-dataset.adoc[Dataset] API (for a structured query DSL). Regardless of the structured query language you choose they all end up as a link:spark-sql-catalyst.adoc[tree of Catalyst expressions] with link:spark-sql-catalyst-Optimizer.adoc[further optimizations] along the way to your large distributed data sets.
+*Spark SQL* 主要用于查询结构化和半结构化数据,使用 link:spark-sql-dataset.adoc[Dataset] 操作数据
 
-With the recent changes in Spark 2.0, Spark SQL is now _de facto_ the primary and feature-rich interface to Spark's underlying in-memory distributed platform (hiding Spark Core's RDDs behind higher-level abstractions).
+从Spark2.0最近的变更来看,Sapark SQL变的越来越重要,功能也越来越多 正在成为主要的数据操作方式
 
 [source, scala]
 ----
@@ -28,18 +28,21 @@ scala > sql(
 +-----------+--------+
 ----
 
-Like SQL and NoSQL databases, Spark SQL offers performance query optimizations using Catalyst's link:spark-sql-catalyst-Optimizer.adoc[Logical Query Plan Optimizer], link:spark-sql-whole-stage-codegen.adoc[code generation] (that could often be better than your own custom handmade code!) and link:spark-sql-tungsten.adoc[Tungsten execution engine] with its own link:spark-sql-InternalRow.adoc[Internal Binary Row Format].
+像SQL和NOSQL数据苦,Spark SQL也提供查询优化,Spark SQL的查询优化是通过Catalyst实现的.优化主要有:
+ - link:spark-sql-catalyst-Optimizer.adoc[逻辑语法树优化]
+ - link:spark-sql-whole-stage-codegen.adoc[代码生成n] (自动生成的代码通常比你手写的代码更高效)  - link:spark-sql-tungsten.adoc[Tungsten execution engine] 
+ - link:spark-sql-InternalRow.adoc[Internal Binary Row Format].
 
-Spark SQL introduces a tabular data abstraction called link:spark-sql-dataset.adoc[Dataset] (that was previously link:spark-sql-dataframe.adoc[DataFrame]). ``Dataset`` data abstraction is designed to make processing large amount of structured tabular data on Spark infrastructure simpler and faster.
+Spark SQL用 link:spark-sql-dataset.adoc[Dataset] (以前叫 link:spark-sql-dataframe.adoc[DataFrame])表示类表类数据. ``Dataset`` 被设计用来在Spark上简单高效的处理类表类数据.
 
 [NOTE]
 ====
-Quoting https://drill.apache.org/[Apache Drill] which applies to Spark SQL perfectly:
+关于 https://drill.apache.org/[Apache Drill] 的表述同样也适用于Spark SQL:
 
-> A SQL query engine for relational and NoSQL databases with direct queries on self-describing and semi-structured data in files, e.g. JSON or Parquet, and HBase tables without needing to specify metadata definitions in a centralized store.
+> 一个不需要特别指定原数据的既适用于关系性数据库又适用于NoSQL数据库,既可以查询结构化数据又可以查询非结构数据(JSON,Parquet,HBase)的查询引擎.
 ====
 
-The following snippet shows a *batch ETL pipeline* to process JSON files and saving their subset as CSVs.
+来一段代码展示 一个简单的ETL流程 从一个JSON文件中读取部分数据另存为CSV文件.
 
 [source, scala]
 ----
@@ -53,7 +56,7 @@ spark.read
   .save("output-csv")
 ----
 
-With link:spark-sql-structured-streaming.adoc[Structured Streaming] feature however, the above static batch query becomes dynamic and continuous paving the way for *continuous applications*.
+使用 link:spark-sql-structured-streaming.adoc[结构化数据流] 功能可以将静态的批处理查询转化为动态延续的*实时应用* , 上代码:
 
 [source, scala]
 ----
