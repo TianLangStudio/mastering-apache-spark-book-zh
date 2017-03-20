@@ -92,11 +92,12 @@ version: String
 
 === [[implicits]] 隐式转换对象
 
-The `implicits` object is a helper class with the Scala implicit methods (aka _conversions_) to convert Scala objects to link:spark-sql-dataset.adoc[Datasets], link:spark-sql-dataframe.adoc[DataFrames] and link:spark-sql-columns.adoc[Columns]. It also defines link:spark-sql-Encoder.adoc[Encoders] for Scala's "primitive" types, e.g. `Int`, `Double`, `String`, and their products and collections.
+用于scala编程的隐式转换 可以方便的将scala对象转换为 link:spark-sql-dataset.adoc[Datasets], link:spark-sql-dataframe.adoc[DataFrames] 和 link:spark-sql-columns.adoc[Columns].
+并为scala "基础类型(Int,Double)" 定义了 link:spark-sql-Encoder.adoc[编码器].
 
 [NOTE]
 ====
-Import the implicits by `import spark.implicits._`.
+使用 `import spark.implicits._` 导入隐式转换
 
 [source, scala]
 ----
@@ -105,22 +106,23 @@ import spark.implicits._
 ----
 ====
 
-`implicits` object offers support for creating `Dataset` from `RDD` of any type (for which an link:spark-sql-Encoder.adoc[encoder] exists in scope), or case classes or tuples, and `Seq`.
+`implicits` 支持从  `RDD`  (作用域里存在 link:spark-sql-Encoder.adoc[encoder]) case classes,tuples,`Seq` 创建 `Dataset`.
 
-`implicits` object also offers conversions from Scala's `Symbol` or `$` to `Column`.
+`implicits` 还支持将 Scala的`Symbol` 和`$` 转换成 `Column`.
 
-It also offers conversions from `RDD` or `Seq` of `Product` types (e.g. case classes or tuples) to `DataFrame`. It has direct conversions from `RDD` of `Int`, `Long` and `String` to `DataFrame` with a single column name `_1`.
+支持将包含Product类型(case类,元组)的`RDD`和`Seq`转换为`DataFrame`.
+支持将包含`Int`, `Long` 和 `String` 的`RDD`转换为只有一个名为`_1`列的DataFrame`.
 
-NOTE: It is only possible to call `toDF` methods on `RDD` objects of `Int`, `Long`, and `String` "primitive" types.
+注意: 需要通过调用`toDF`方法将包含基本数据类型(`Int`, `Long`, `String`) 的RDD转换为DataFrame.
 
-=== [[emptyDataset]] Creating Empty Dataset -- `emptyDataset` method
+=== [[emptyDataset]] 方法`emptyDataset` -- 创建一个空的DataSet
 
 [source, scala]
 ----
 emptyDataset[T: Encoder]: Dataset[T]
 ----
 
-`emptyDataset` creates an empty link:spark-sql-dataset.adoc[Dataset] (assuming that future records being of type `T`).
+`emptyDataset` 创建一个空的 link:spark-sql-dataset.adoc[Dataset].
 
 [source, scala]
 ----
@@ -132,9 +134,9 @@ root
  |-- value: string (nullable = true)
 ----
 
-`emptyDataset` creates a  link:spark-sql-logical-plan-LocalRelation.adoc[`LocalRelation` logical query plan].
+`emptyDataset` 创建了一个  link:spark-sql-logical-plan-LocalRelation.adoc[`LocalRelation` 逻辑查询计划].
 
-=== [[createDataset]] Creating Dataset from Local Collections and RDDs -- `createDataset` methods
+=== [[createDataset]] 方法`createDataset` -- 从集合或RDD创建DataSet
 
 [source, scala]
 ----
@@ -142,7 +144,7 @@ createDataset[T : Encoder](data: Seq[T]): Dataset[T]
 createDataset[T : Encoder](data: RDD[T]): Dataset[T]
 ----
 
-`createDataset` is an experimental API to create a link:spark-sql-dataset.adoc[Dataset] from a local Scala collection, i.e. `Seq[T]`, Java's `List[T]`, or a distributed `RDD[T]`.
+在测试和实验时用`createDataset`可以方便的从集合类型创建 link:spark-sql-dataset.adoc[Dataset].
 
 [source, scala]
 ----
@@ -157,11 +159,11 @@ scala> one.show
 +-----+
 ----
 
-`createDataset` creates a link:spark-sql-logical-plan-LocalRelation.adoc[`LocalRelation` logical query plan] (for the input `data` collection) or `LogicalRDD` (for the input `RDD[T]`).
+`createDataset` 创建了一个 link:spark-sql-logical-plan-LocalRelation.adoc[`LocalRelation` 逻辑查询计划] .
 
-[TIP]
+[小贴上]
 ====
-You'd be better off using link:spark-sql-dataset.adoc#implicits[Scala implicits and `toDS` method] instead (that does this conversion automatically for you).
+你也可以使用:spark-sql-dataset.adoc#implicits[Scala隐式转换或者`toDS`方法] 完成类似的转换.
 
 [source, scala]
 ----
@@ -173,13 +175,13 @@ one: org.apache.spark.sql.Dataset[Int] = [value: int]
 ----
 ====
 
-Internally, `createDataset` first looks up the implicit link:spark-sql-Encoder.adoc#ExpressionEncoder[expression encoder] in scope to access the ``AttributeReference``s (of the link:spark-sql-schema.adoc[schema]).
+`createDataset` 首先在link:spark-sql-schema.adoc[schema]的属性作用域(``AttributeReference``)里查找隐式的 link:spark-sql-Encoder.adoc#ExpressionEncoder[encoder].
 
-NOTE: Only unresolved link:spark-sql-Encoder.adoc#ExpressionEncoder[expression encoders] are currently supported.
+注意: 当前只支持 unresolved link:spark-sql-Encoder.adoc#ExpressionEncoder[expression encoders].
 
-The expression encoder is then used to map elements (of the input `Seq[T]`) into a collection of link:spark-sql-InternalRow.adoc[InternalRows]. With the references and rows, `createDataset` returns a link:spark-sql-dataset.adoc[Dataset] with a link:spark-sql-logical-plan-LocalRelation.adoc[`LocalRelation` logical query plan].
+然后会使用这个encoder表达式对集合或RDD做map操作返回DataSet.
 
-=== [[range]] Creating Dataset With Single Long Column -- `range` methods
+=== [[range]] `range`方法 -- 创建只有一个Long类型列的DataSet
 
 [source, scala]
 ----
@@ -189,7 +191,7 @@ range(start: Long, end: Long, step: Long): Dataset[java.lang.Long]
 range(start: Long, end: Long, step: Long, numPartitions: Int): Dataset[java.lang.Long]
 ----
 
-`range` family of methods create a link:spark-sql-dataset.adoc[Dataset] of `Long` numbers.
+`range` 系列方法创建包含Long类型数据的 link:spark-sql-dataset.adoc[Dataset].
 
 [source, scala]
 ----
@@ -202,22 +204,24 @@ scala> spark.range(start = 0, end = 4, step = 2, numPartitions = 5).show
 +---+
 ----
 
-NOTE: The three first variants (that do not specify `numPartitions` explicitly) use link:spark-sparkcontext.adoc#defaultParallelism[SparkContext.defaultParallelism] for the number of partitions `numPartitions`.
+注意: 如果不指定第四个参数(`numPartitions`) 默认使用
+link:spark-sparkcontext.adoc#defaultParallelism[SparkContext.defaultParallelism].
 
-Internally, `range` creates a new `Dataset[Long]` with `Range` link:spark-sql-LogicalPlan.adoc[logical plan] and `Encoders.LONG` link:spark-sql-Encoder.adoc[encoder].
+`range` 创建了一个带`Range` link:spark-sql-LogicalPlan.adoc[逻辑计划] 和
+`Encoders.LONG` link:spark-sql-Encoder.adoc[encoder] 的 `Dataset[Long]`
+.
 
-=== [[emptyDataFrame]]  Creating Empty DataFrame --  `emptyDataFrame` method
+=== [[emptyDataFrame]] 方法`emptyDataFrame` -- 创建一个空的DataFrame
 
 [source, scala]
 ----
 emptyDataFrame: DataFrame
 ----
 
-`emptyDataFrame` creates an empty `DataFrame` (with no rows and columns).
+`emptyDataFrame` 创建一个没有行也没有列的空的 `DataFrame`.
 
-It calls <<createDataFrame, createDataFrame>> with an empty `RDD[Row]` and an empty schema link:spark-sql-StructType.adoc[StructType(Nil)].
 
-=== [[createDataFrame]] Creating DataFrames from RDDs with Explicit Schema -- `createDataFrame` method
+=== [[createDataFrame]] 方法`createDataFrame` -- Creating DataFrames from RDDs with Explicit Schema --
 
 [source, scala]
 ----
